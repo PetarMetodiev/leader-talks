@@ -8,6 +8,7 @@ block content
     h1 Blog posts go here...
     each post in blogPosts
         h3= 'Title: ' + post.title
-        h4= 'Post: '
+        h4.truncate= 'Post: '
             !=post.content
         em #{post.date.toDateString()}
+        hr

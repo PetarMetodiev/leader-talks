@@ -1,0 +1,13 @@
+extends ../base
+
+block vars
+    - var title = 'Blog posts'
+    - var post = 'active'
+
+block content
+    h1 Blog posts go here...
+    each post in blogPosts
+        h3= 'Title: ' + post.title
+        h4= 'Post: '
+            !=post.content
+        em #{post.date.toDateString()}

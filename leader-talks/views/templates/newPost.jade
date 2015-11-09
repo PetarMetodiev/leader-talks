@@ -1,0 +1,22 @@
+extends ../base
+
+block vars
+    - var title = 'New post'
+    - var newpost = 'active'
+
+block content
+    // script(src='https://code.jquery.com/jquery-2.1.4.min.js')
+    // link(rel="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/jquery-te/1.4.0/jquery-te.min.css")
+    // script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-te/1.4.0/jquery-te.min.js')
+    script(src='//cdn.ckeditor.com/4.5.4/standard/ckeditor.js')
+    h1 Adding new posts from here
+    form(method='post', action='/newpost')
+        label(for='title') Title
+        input(type='text', id='title', name='title')
+        br
+        label(for='body') Content
+        textarea(class='editor', rows='10', cols='100', id='content', name='content')
+        br
+        input(type='submit', value='Submit')
+
+    script(src='javascripts/text-editor.js')

@@ -5,10 +5,11 @@ block vars
     - var post = 'active'
 
 block content
-    h1 Blog posts go here...
+    script(src="javascripts/jQuery.succinct.min.js")
+    script(src='javascripts/all-posts-init.js')
     each post in blogPosts
-        h3= 'Title: ' + post.title
-        h4.truncate= 'Post: '
+        h1=  post.title
+        h4.truncate
             !=post.content
         em #{post.date.toDateString()}
         hr

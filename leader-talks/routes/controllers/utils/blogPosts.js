@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var BlogPost = require('../../../models/blogPost');
 var _ = require('underscore');
+var moment = require('moment');
 
 
 router.get('/', function (req, res, next) {
@@ -10,16 +11,32 @@ router.get('/', function (req, res, next) {
 		if (err) {
 			return next(err);
 		}
-		
+
 		var sortedBlogPosts = _.sortBy(blogPosts, function (bp) {
+			var relativeDate = moment(bp.date).calendar();
+			bp.relativeDate = relativeDate;
 			return -bp.date;
 		})
+
 
 		res.render('./templates/posts', { blogPosts: sortedBlogPosts });
 
 	});
-	// res.render('./templates/posts');
 });
+
+router.get('/:id', function (req, res, next) {
+	BlogPost.findById(req.params.id, function (err, blogpost) {
+		if (err) {
+			return next(err);
+		}
+
+		console.log('blogpost: ' + blogpost);
+
+
+		res.render('./templates/singlePost', { blogpost: blogpost });
+
+	})
+})
 
 // TODO: implement get(':id')
 

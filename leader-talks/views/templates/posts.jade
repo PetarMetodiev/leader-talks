@@ -8,8 +8,10 @@ block content
     script(src="javascripts/jQuery.succinct.min.js")
     script(src='javascripts/all-posts-init.js')
     each post in blogPosts
-        h1=  post.title
-        h4.truncate
-            !=post.content
-        em #{post.date.toDateString()}
+        div.blog-item
+            a(href='posts/' + post.id)
+                h1=  post.title
+                div.truncate
+                    !=post.content
+                em #{post.relativeDate}
         hr

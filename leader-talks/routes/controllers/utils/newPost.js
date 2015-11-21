@@ -8,10 +8,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	// res.json({
-	// 	title: req.body.title,
-	// 	body: req.body.content
-	// });
 	var newPostObj = {
 		title: req.body.title,
 		content: req.body.content

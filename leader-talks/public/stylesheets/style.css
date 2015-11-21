@@ -7,13 +7,17 @@ a {
     color: #00B7FF;
 }
 
-/*.truncate{
-    width: 70%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}*/
-
 .marker{
     background-color: yellow;
+}
+
+.blog-item a:hover, .blog-item a {
+    /*text-decoration: none;*/
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: inherit;
+}
+
+.blog-item:hover{
+    background-color: ivory;
 }

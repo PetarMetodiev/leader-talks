@@ -12,12 +12,14 @@ block content
     script(src="javascripts/ckeditor/ckeditor.js")
     h1 Adding new posts from here
     form(method='post', action='/newpost')
-        label(for='title') Title
-        input(type='text', id='title', name='title')
-        br
-        label(for='body') Content
-        textarea(class='editor', rows='10', cols='100', id='content', name='content')
-        br
-        input(type='submit', value='Submit')
-
+        .form-group
+            label(for='title') Title
+            input.form-control(type='text', id='title', name='title')
+            br
+        .form-group
+            label(for='body') Content
+            textarea.form-control(class='editor', rows='10', cols='100', id='content', name='content')
+            br
+        .btn-group(role='group')
+            button.btn.btn-primary(type='submit', value='Submit') Submit
     script(src='javascripts/text-editor.js')

@@ -30,14 +30,19 @@ router.get('/:id', function (req, res, next) {
 			return next(err);
 		}
 
-		console.log('blogpost: ' + blogpost);
-
-
 		res.render('./templates/singlePost', { blogpost: blogpost });
 
 	})
 })
 
-// TODO: implement get(':id')
+router.delete('/:id', function (req, res, next) {
+	BlogPost.findByIdAndRemove(req.params.id, function (err, blogpost) {
+		if (err) {
+			return next(err);
+		}
+
+		res.status(200).send('Deleted post sucessfully');
+	})
+})
 
 module.exports = router;

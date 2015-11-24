@@ -18,8 +18,7 @@ router.post('/', function (req, res, next) {
 		if (err) {
 			return next(err);
 		}
-
-		console.log('Blog post created!');
+		
 		res.redirect('/posts');
 	})
 })

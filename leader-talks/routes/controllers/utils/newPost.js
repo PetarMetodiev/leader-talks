@@ -10,15 +10,18 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
 	var newPostObj = {
 		title: req.body.title,
-		content: req.body.content
+		content: req.body.content,
+		titlePicture: req.body.titlePicture || 'https://www.concrete.org/portals/0/files/images/bookstore/No_image_available.jpg'
 	};
+
+	// TODO: Validate if the Title image url leads to an existing image(e.g. if the responce is 200(OK))
 
 	var newPost = new BlogPost(newPostObj);
 	newPost.save(function (err) {
 		if (err) {
 			return next(err);
 		}
-		
+
 		res.redirect('/posts');
 	})
 })

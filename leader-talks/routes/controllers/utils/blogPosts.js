@@ -15,8 +15,11 @@ router.get('/', function (req, res, next) {
 		var sortedBlogPosts = _.sortBy(blogPosts, function (bp) {
 			var relativeDate = moment(bp.date).calendar();
 			bp.relativeDate = relativeDate;
+			// bp.titlePicture = bp.titlePicture || 'https://www.concrete.org/portals/0/files/images/bookstore/No_image_available.jpg';
 			return -bp.date;
 		})
+
+		console.log(sortedBlogPosts[0]);
 
 
 		res.render('./templates/posts', { blogPosts: sortedBlogPosts });

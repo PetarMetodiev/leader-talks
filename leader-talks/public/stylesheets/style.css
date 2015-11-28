@@ -20,20 +20,22 @@ a {
 
 .blog-item {
     position: relative;
+    padding-right:  30px;
+    padding-left: 30px;
 }
 
 .blog-item:hover{
     background-color: #F8F8F8;
 }
 
-.blog-item:hover .remove-button{
+.blog-item:hover .edit-buttons {
     visibility: visible;
     z-index: 100;
 }
 
-.remove-button {
+.edit-buttons {
     visibility: hidden;
     position: absolute;
+    bottom: 10px;
     top: 10px;
-    right: 10px;
 }

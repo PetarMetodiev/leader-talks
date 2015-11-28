@@ -1,8 +1,7 @@
 extends ../base
 
 block vars
-	- var title = 'Blog post'
-	- var post = 'active'
+	- var title = 'LeaderTalks ' + blogpost.title
 
 block content
 	h1 #{blogpost.title}

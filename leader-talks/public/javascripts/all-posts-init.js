@@ -1,7 +1,5 @@
-
-
 $(function () {
-	$('.blog-item').on('click', '.remove-button', function (event) {
+	$('.blog-item').on('click', '#remove-button', function (event) {
 		var objectId = $(event.target).attr('data-id');
 		var url = 'posts/'+ objectId;
 

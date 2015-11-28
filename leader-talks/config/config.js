@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 
+// TODO: Rename filename to db
+
 module.exports = {
 	dbUrl: 'mongodb://localhost:27017/',
 	dbName: 'test',
 	blogPostSchema: new mongoose.Schema({
 		title: { type: String, required: true },
-		thumbnail: { type: String },
+		titlePicture: { type: String },
 		content: { type: String, required: true },
 		pictures: [String],
 		date: { type: Date, default: Date.now }

@@ -16,7 +16,9 @@ block content
                     span.glyphicon.glyphicon-remove
             a(href='posts/' + post.id)
                 h1=  post.title
-                img(src='#{post.titlePicture}')
+                .image-container
+                    img.title-picture(src='#{post.titlePicture}')
                 div.truncate
                     !=post.content
                 em #{post.relativeDate}
+                hr

@@ -5,6 +5,7 @@ block vars
 
 block content
 	h1 #{blogpost.title}
+	img.title-picture(src='#{blogpost.titlePicture}')
 	div
 		!= blogpost.content
 	em #{blogpost.date.toDateString()}

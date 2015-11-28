@@ -19,9 +19,6 @@ router.get('/', function (req, res, next) {
 			return -bp.date;
 		})
 
-		console.log(sortedBlogPosts[0]);
-
-
 		res.render('./templates/posts', { blogPosts: sortedBlogPosts });
 
 	});

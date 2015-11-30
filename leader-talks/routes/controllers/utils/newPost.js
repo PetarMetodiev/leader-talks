@@ -4,7 +4,13 @@ var mongoose = require('mongoose');
 var BlogPost = require('../../../models/blogPost');
 
 router.get('/', function (req, res, next) {
-	res.render('./templates/newPost');
+	var predefinedContent = {
+		title: '',
+		pictureURL: '',
+		content: ''
+	}
+
+	res.render('./templates/newPost', { predefinedContent: predefinedContent });
 });
 
 router.post('/', function (req, res, next) {

@@ -1,29 +1,30 @@
 extends ../base
 
 block vars
-    - var title = 'New post'
-    - var newpost = 'active'
+    - var title = 'New post';
+    - var newpost = 'active';
+
+    if predefinedContent.updateBlogpost
+        - var action = '/posts/update/' + predefinedContent.id;
+    else if !predefinedContent.updateBlogpost
+        - var action = '/newpost';
 
 block content
-    // script(src='https://code.jquery.com/jquery-2.1.4.min.js')
-    // link(rel="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/jquery-te/1.4.0/jquery-te.min.css")
-    // script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-te/1.4.0/jquery-te.min.js')
-    // script(src='//cdn.ckeditor.com/4.5.4/standard/ckeditor.js')
-    script(src="javascripts/ckeditor/ckeditor.js")
-    h1 Adding new posts from here
-    form(method='post', action='/newpost')
+    script(src="/javascripts/ckeditor/ckeditor.js")
+
+    form(method='POST', action='#{action}')
         .form-group
             label(for='title') Title
-            input.form-control(type='text', id='title', name='title')
+            input.form-control(type='text', id='title', name='title', value='#{predefinedContent.title}')
             br
         .form-group
             label(for='titlePicture') Title picture link
-            input.form-control(type='text', id='titlePicture', name='titlePicture')
+            input.form-control(type='text', id='titlePicture', name='titlePicture', value='#{predefinedContent.pictureURL}')
             br
         .form-group
             label(for='body') Content
-            textarea.form-control(class='editor', rows='10', cols='100', id='content', name='content')
+            textarea.form-control(class='editor', rows='10', cols='100', id='content', name='content') #{predefinedContent.content}
             br
         .btn-group(role='group')
             button.btn.btn-primary(type='submit', value='Submit') Submit
-    script(src='javascripts/text-editor.js')
+    script(src='/javascripts/text-editor.js')

@@ -28,7 +28,7 @@ a {
     background-color: #F8F8F8;
 }
 
-.blog-item:hover .edit-buttons {
+.blog-item:hover .edit-buttons, .article:hover .edit-buttons {
     visibility: visible;
     z-index: 100;
 }
@@ -44,17 +44,6 @@ a {
     display: block;
     margin: 0 auto;
 }
-
-/*.image-container {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-}
-
-.image-container > .title-picture {
-    max-width:100%;
-    max-height:100%;
-}*/
 
 .image-container {
     width: 100%;

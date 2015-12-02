@@ -3,14 +3,17 @@ $(document).ready(function () {
 		account: 'leadertalks',
 		accessToken: "775908159169504|cYEIsh0rs25OQQC8Ex2hXyCOut4",
 		showComments: true,
-		commentsLimit: 3,
+		commentsLimit: 10,
 		showAccountInfo: true,
 		showImageCount: true,
 		showImageText: true,
-		shareButton: false,
+		shareButton: true,
 		albumsPageSize: 0,
 		photosPageSize: 0,
 		lightbox: true,
-		photosCheckbox: true
+		skipAlbums: ['Profile Pictures', 'Timeline Photos', 'Cover Photos', 'Mobile Uploads'],
+		thumbnailSize: 500,
+		photosCheckbox: true,
+		addThis: "ra-52638e915dd79612"
 	});
 });

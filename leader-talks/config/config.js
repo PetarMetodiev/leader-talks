@@ -10,7 +10,9 @@ module.exports = {
 		titlePicture: { type: String },
 		content: { type: String, required: true },
 		pictures: [String],
-		date: { type: Date, default: Date.now }
+		date: { type: Date, default: Date.now },
+		updatedPost: Boolean,
+		updatedOn: { type: Date }
 	}),
 	userSchema: new mongoose.Schema({
 		username: { type: String, required: true },

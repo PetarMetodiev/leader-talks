@@ -15,7 +15,12 @@ router.get('/', function (req, res, next) {
 		var sortedBlogPosts = _.sortBy(blogPosts, function (bp) {
 			var relativeDate = moment(bp.date).calendar();
 			bp.relativeDate = relativeDate;
-			// bp.titlePicture = bp.titlePicture || 'https://www.concrete.org/portals/0/files/images/bookstore/No_image_available.jpg';
+
+			if (bp.updatedPost) {
+				var relativeUpdatedDate = moment(bp.updatedOn).calendar();
+				bp.relativeUpdatedDate = relativeUpdatedDate;
+			}
+
 			return -bp.date;
 		})
 
@@ -69,7 +74,9 @@ router.post('/update/:id', function (req, res, next) {
 	var newPostObj = {
 		title: req.body.title,
 		content: req.body.content,
-		titlePicture: req.body.titlePicture || 'https://www.concrete.org/portals/0/files/images/bookstore/No_image_available.jpg'
+		titlePicture: req.body.titlePicture || 'https://www.concrete.org/portals/0/files/images/bookstore/No_image_available.jpg',
+		updatedPost: true,
+		updatedOn: new Date()
 	};
 
 	BlogPost.findByIdAndUpdate(req.params.id, newPostObj, function (err, blogpost) {

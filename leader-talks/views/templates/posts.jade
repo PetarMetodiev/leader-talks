@@ -20,4 +20,7 @@ block content
                     !=post.content
                 br
                 em #{post.relativeDate}
+            if post.updatedPost
+                br
+                em Updated #{post.relativeUpdatedDate}
                 hr

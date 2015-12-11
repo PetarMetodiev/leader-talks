@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(config.dbUrl + config.dbName);
+mongoose.connect(config.dbTestUrl + config.dbTestName);
 
 app.use(require('./routes'));
 

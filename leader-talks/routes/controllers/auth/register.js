@@ -5,4 +5,9 @@ router.get('/', function(req, res) {
     res.render('./templates/register');
 });
 
+router.post('/', function(req,res){
+    console.log(req.body);
+    res.redirect('/');
+});
+
 module.exports = router;

@@ -6,8 +6,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config/config');
-
 var mongoose = require('mongoose');
+var flash = require('connect-flash');
+var passport = require('passport');
+var expressSession = require('express-session');
 
 var app = express();
 
@@ -21,6 +23,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Passport and express-session configuration
+app.use(expressSession({
+  secret: 'dfkljmvig589cmwr23rKURAMIQNKO',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
+console.log('Think where to bind passport to the routes - only in /auth or in the root');
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect(config.dbTestUrl + config.dbTestName);

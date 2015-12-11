@@ -8,19 +8,25 @@ module.exports = {
 	dbTestUrl: 'mongodb://leader-talks:1234567890@ds029615.mongolab.com:29615/',
 	dbTestName: 'leadertalks',
 	blogPostSchema: new mongoose.Schema({
-		title: { type: String, required: true },
-		titlePicture: { type: String },
-		content: { type: String, required: true },
+		title: {
+			type: String,
+			required: true
+		},
+		titlePicture: {
+			type: String
+		},
+		content: {
+			type: String,
+			required: true
+		},
 		pictures: [String],
-		date: { type: Date, default: Date.now },
+		date: {
+			type: Date,
+			default: Date.now
+		},
 		updatedPost: Boolean,
-		updatedOn: { type: Date }
-	}),
-	userSchema: new mongoose.Schema({
-		username: { type: String, required: true },
-		password: { type: String, required: true },
-		email: { type: String, required: true },
-		avatar: { type: String, required: true },
-		role: { type: String, required: true }
+		updatedOn: {
+			type: Date
+		}
 	})
 }

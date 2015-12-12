@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect(config.dbTestUrl + config.dbTestName);
 
-app.use(require('./routes'));
+app.use(require('./routes')(passport));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

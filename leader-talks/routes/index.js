@@ -11,19 +11,37 @@ var newPost = require('./controllers/utils/newPost');
 
 var auth = require('./controllers/auth');
 
-router.use('/auth', auth);
+// router.use('/auth', auth);
 
 // routes
-router.use('/', home);
+// router.use('/', home);
 
-router.use('/calendar', calendar);
+// router.use('/calendar', calendar);
 
-router.use('/donate', donate);
+// router.use('/donate', donate);
 
-router.use('/pictures', pictures);
+// router.use('/pictures', pictures);
 
-router.use('/posts', blogPosts);
+// router.use('/posts', blogPosts);
 
-router.use('/newpost', newPost);
+// router.use('/newpost', newPost);
 
-module.exports = router;
+// module.exports = router;
+
+module.exports = function(passport) {
+    router.use('/auth', auth);
+    
+    router.use('/', home);
+
+    router.use('/calendar', calendar);
+
+    router.use('/donate', donate);
+
+    router.use('/pictures', pictures);
+
+    router.use('/posts', blogPosts);
+
+    router.use('/newpost', newPost);
+    
+    return router;
+}

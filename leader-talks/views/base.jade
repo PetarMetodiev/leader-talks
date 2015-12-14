@@ -45,6 +45,7 @@ html
                                     a(href='#') Add event
                     p(class='navbar-text navbar-right')
                         if user.login
+                            span Logged in as #{user.email}  &nbsp;
                             span.glyphicon.glyphicon-log-out &nbsp;
                             a.navbar-link(href='/auth/logout') Logout
                         else

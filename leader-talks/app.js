@@ -45,8 +45,8 @@ mongoose.connect(config.dbTestUrl + config.dbTestName);
 var initPassport = require('./config/passport/init');
 initPassport(passport);
 
+// middleware to see if the user is logged in or not.
 app.use(function(req, res, next) {
-  // res.locals.login = req.isAuthenticated();
   res.locals.user = {
     login: req.isAuthenticated()
   }

@@ -11,26 +11,12 @@ var newPost = require('./controllers/utils/newPost');
 
 var auth = require('./controllers/auth');
 
-// router.use('/auth', auth);
-
-// routes
-// router.use('/', home);
-
-// router.use('/calendar', calendar);
-
-// router.use('/donate', donate);
-
-// router.use('/pictures', pictures);
-
-// router.use('/posts', blogPosts);
-
-// router.use('/newpost', newPost);
-
-// module.exports = router;
+var helpers = require('../config/passport/helpers');
 
 module.exports = function(passport) {
+
     router.use('/auth', auth(passport));
-    
+
     router.use('/', home(passport));
 
     router.use('/calendar', calendar(passport));
@@ -41,7 +27,7 @@ module.exports = function(passport) {
 
     router.use('/posts', blogPosts(passport));
 
-    router.use('/newpost', newPost(passport));
-    
+    router.use('/newpost', helpers.isAuthenticated, helpers.isAdmin, newPost(passport));
+
     return router;
 }

@@ -76,7 +76,7 @@ module.exports = function(passport) {
 
 		console.log('in the update controller');
 
-		// TODO: Validate if the Title image url leads to an existing image(e.g. if the responce is 200(OK)).
+		// TODO: Validate if the Title image url leads to an existing image(e.g. if the responce is 200(OK)). http://stackoverflow.com/a/18441636
 
 		var newPostObj = {
 			title: req.body.title,

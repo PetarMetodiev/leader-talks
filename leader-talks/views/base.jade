@@ -33,16 +33,17 @@ html
                             a(href='/pictures') Pictures
                         li(class='#{ post }')
                             a(href='/posts') Posts
-                        li(class='dropdown')
-                            a(href='#', class='dropdown-toggle', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Admin tools
-                                span(class='caret')
-                            ul(class='dropdown-menu')
-                                li
-                                    a(href='/newpost') Add new post
-                                li
-                                    a(href='#') Add pictures
-                                li
-                                    a(href='#') Add event
+                        if user.login && user.role === 'admin'
+                            li(class='dropdown')
+                                a(href='#', class='dropdown-toggle', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Admin tools
+                                    span(class='caret')
+                                ul(class='dropdown-menu')
+                                    li
+                                        a(href='/newpost') Add new post
+                                    li
+                                        a(href='#') Add pictures
+                                    li
+                                        a(href='#') Add event
                     p(class='navbar-text navbar-right')
                         if user.login
                             span Logged in as #{user.email}  &nbsp;

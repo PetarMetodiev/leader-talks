@@ -50,9 +50,12 @@ app.use(function(req, res, next) {
   res.locals.user = {
     login: req.isAuthenticated()
   }
+
   if (req.isAuthenticated()) {
     res.locals.user.email = req.user.email;
+    res.locals.user.role = req.user.role;
   }
+
   next();
 })
 

@@ -40,7 +40,8 @@ module.exports = {
 		},
 		role: {
 			type: String/*,
-			required: true*/
+			required: true*/,
+			default: 'user'
 		}
 	})
 }

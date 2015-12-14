@@ -36,6 +36,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 mongoose.connect(config.dbTestUrl + config.dbTestName);
 

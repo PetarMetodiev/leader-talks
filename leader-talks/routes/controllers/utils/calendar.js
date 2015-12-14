@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+module.exports = function(passport) {
 
-router.get('/', function(req, res, next) {
-	res.render('./templates/calendar');
-});
+    router.get('/', function(req, res, next) {
+        res.render('./templates/calendar');
+    });
+    
+    return router;
 
-module.exports = router;
+}

@@ -1,12 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res) {
-    res.render('./templates/register');
-});
+module.exports = function(passport) {
 
-router.post('/', function(req, res) {
-    res.redirect('/');
-});
+    router.get('/', function(req, res) {
+        // res.locals.testVar = req.locals.testVar;
+        console.log('router: ' + router.locals);
+        res.render('./templates/register', {
+            message: req.flash('message')
+        });
+    });
 
-module.exports = router;
+    router.post('/', passport.authenticate('register', {
+        successRedirect: '/',
+        failureRedirect: '/auth/register',
+        failureFlash: true
+    }));
+
+    return router;
+
+}

@@ -4,9 +4,14 @@ var router = express.Router();
 var login = require('./login');
 var register = require('./register');
 var admin = require('./admin');
+var logout = require('./logout');
 
-router.use('/login', login);
-router.use('/register', register);
-router.use('/admin-panel', admin);
 
-module.exports = router;
+module.exports = function(passport) {
+    router.use('/login', login(passport));
+    router.use('/register', register(passport));
+    router.use('/admin-panel', admin(passport));
+    router.use('/logout', logout);
+    
+    return router;
+}

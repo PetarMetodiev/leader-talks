@@ -35,11 +35,12 @@ app.use(passport.session());
 
 app.use(flash());
 
-console.log('Think where to bind passport to the routes - only in /auth or in the root');
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect(config.dbTestUrl + config.dbTestName);
+
+var initPassport = require('./config/passport/init');
+initPassport(passport);
 
 app.use(require('./routes')(passport));
 

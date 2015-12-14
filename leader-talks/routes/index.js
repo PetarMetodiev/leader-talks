@@ -29,19 +29,19 @@ var auth = require('./controllers/auth');
 // module.exports = router;
 
 module.exports = function(passport) {
-    router.use('/auth', auth);
+    router.use('/auth', auth(passport));
     
-    router.use('/', home);
+    router.use('/', home(passport));
 
-    router.use('/calendar', calendar);
+    router.use('/calendar', calendar(passport));
 
-    router.use('/donate', donate);
+    router.use('/donate', donate(passport));
 
-    router.use('/pictures', pictures);
+    router.use('/pictures', pictures(passport));
 
-    router.use('/posts', blogPosts);
+    router.use('/posts', blogPosts(passport));
 
-    router.use('/newpost', newPost);
+    router.use('/newpost', newPost(passport));
     
     return router;
 }

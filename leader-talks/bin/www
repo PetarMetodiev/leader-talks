@@ -26,9 +26,9 @@ var server = http.createServer(app);
  */
 
 
-if (port === '3000') {
-    server.listen(port, '0.0.0.0'); // the 0.0.0.0 is in order to open the site to all devices on local network
-}
+// if (port === '3000') {
+//     server.listen(port, '0.0.0.0'); // the 0.0.0.0 is in order to open the site to all devices on local network
+// }
 
 server.listen(port);
 server.on('error', onError);

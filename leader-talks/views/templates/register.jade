@@ -1,0 +1,20 @@
+extends ../base
+
+block vars
+    - var title = 'Register'
+
+block content
+
+    link(rel='stylesheet', href='/stylesheets/authentication.css')
+
+    form.form-signin(action='/auth/register', method='POST')
+        // h2.form-signin-heading Please login
+        h2.bg-danger.text-danger Encrypt password before sending it to the server!
+        label.sr-only(for='email') Email address
+        input.form-control(type='email', id='email', placeholder='Email address', name='email', required, autofocus)
+        label.sr-only(for='password') Password
+        input.form-control(type='password', id="password", placeholder="Password", name='password', required)
+        label.sr-only(for='passwordRepeat') Repeat password
+        input.form-control(type='password', id="passwordRepeat", placeholder="Repeat password", name='passwordRepeat', required)
+        button.btn.btn-lg.btn-primary.btn-block(type='Submit') Register
+        

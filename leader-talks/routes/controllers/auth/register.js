@@ -5,7 +5,6 @@ module.exports = function(passport) {
 
     router.get('/', function(req, res) {
         // res.locals.testVar = req.locals.testVar;
-        console.log('router: ' + router.locals);
         res.render('./templates/register', {
             message: req.flash('message')
         });

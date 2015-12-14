@@ -43,12 +43,15 @@ html
                                     a(href='#') Add pictures
                                 li
                                     a(href='#') Add event
-                                li #{testVar}
                     p(class='navbar-text navbar-right')
-                        span.glyphicon.glyphicon-log-in &nbsp;
-                        a.navbar-link(href='/auth/login') Login
-                        span  &nbsp;&nbsp;&nbsp;
-                        span.glyphicon.glyphicon-user &nbsp;
-                        a.navbar-link(href='/auth/register') Register
+                        if user.login
+                            span.glyphicon.glyphicon-log-out &nbsp;
+                            a.navbar-link(href='/auth/logout') Logout
+                        else
+                            span.glyphicon.glyphicon-log-in &nbsp;
+                            a.navbar-link(href='/auth/login') Login
+                            span  &nbsp;&nbsp;&nbsp;
+                            span.glyphicon.glyphicon-user &nbsp;
+                            a.navbar-link(href='/auth/register') Register
 
         block content

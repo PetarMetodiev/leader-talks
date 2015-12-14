@@ -11,10 +11,6 @@ module.exports = function(passport) {
         usernameField: 'email',
         passReqToCallback: true
     }, function(req, email, password, done) {
-        console.log(req.body);
-        // req.app.locals.testVar = 'I come from the test var';
-        // console.log(req.app.locals);
-        // console.log(req.session);
         process.nextTick(function() {
             User.findOne({
                 'email': email

@@ -21,7 +21,9 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 // Passport and express-session configuration
@@ -36,14 +38,27 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 mongoose.connect(config.dbTestUrl + config.dbTestName);
 
 var initPassport = require('./config/passport/init');
 initPassport(passport);
 
+app.use(function(req, res, next) {
+  // res.locals.login = req.isAuthenticated();
+  res.locals.user = {
+    login: req.isAuthenticated()
+  }
+  if (req.isAuthenticated()) {
+    res.locals.user.email = req.user.email;
+  }
+  next();
+})
+
 app.use(require('./routes')(passport));
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

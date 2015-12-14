@@ -11,7 +11,7 @@ module.exports = function(passport) {
     router.use('/login', login(passport));
     router.use('/register', register(passport));
     router.use('/admin-panel', admin(passport));
-    router.use('/logout', logout);
-    
+    router.use('/logout', logout(passport));
+
     return router;
 }

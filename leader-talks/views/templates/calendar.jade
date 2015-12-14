@@ -6,4 +6,17 @@ block vars
 
 block content
     h1 Welcome to the calendar page
-    a(href='https://github.com/Serhioromano/bootstrap-calendar') Bootstrap calendar to implement
+    a(href='https://github.com/Serhioromano/bootstrap-calendar') Bootstrap calendar
+    br
+    a(href='http://fullcalendar.io/') Another type of calendar, possible to connect it to Google Calendar
+    // h3 <em>Browser Key:</em> AIzaSyCyPG-dosncLVvuu1eIATwqYo7IPFfAdRk
+    // h3 <em>calendar address:</em> leadertalkss@gmail.com
+
+    link(rel="stylesheet", href="/bower_components/jquery-ui/themes/flick/theme.css")
+    script(type='text/javascript', src='/javascripts/fullcalendar/fullcalendar-2.5.0/lib/moment.min.js')
+    script(type='text/javascript', src='/javascripts/fullcalendar/fullcalendar-2.5.0/fullcalendar.min.js')
+    link(rel='stylesheet', href='/javascripts/fullcalendar/fullcalendar-2.5.0/fullcalendar.min.css')
+    script(type='text/javascript', src='/javascripts/fullcalendar/fullcalendar-2.5.0/gcal.js')
+    script(type='text/javascript', src='/javascripts/calendar-init.js')
+
+    #calendar

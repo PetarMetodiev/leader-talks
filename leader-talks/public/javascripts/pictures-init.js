@@ -14,6 +14,7 @@ $(document).ready(function () {
 		skipAlbums: ['Profile Pictures', 'Timeline Photos', 'Cover Photos', 'Mobile Uploads'],
 		thumbnailSize: 500,
 		photosCheckbox: true,
-		addThis: "ra-52638e915dd79612"
+		addThis: "ra-52638e915dd79612",
+		likeButton: true
 	});
 });

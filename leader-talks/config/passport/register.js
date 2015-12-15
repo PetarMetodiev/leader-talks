@@ -1,6 +1,9 @@
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../../models/user');
 var bCrypt = require('bcrypt-nodejs');
+var validator = require('validator');
+
+var minPasswordLength = 6;
 
 var createHash = function(password) {
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10));
@@ -21,15 +24,26 @@ module.exports = function(passport) {
                     return done(err);
                 }
 
-                if (user) {
-                    console.log('User already exists: ' + email);
-                    return done(null, false, req.flash('message', 'User already exists.'));
+                if (!validator.isEmail(email)) {
+                    console.log('Invalid email: ' + email);
+                    return done(null, false, req.flash('message', 'Invalid email'));
+                }
+
+                if(req.body.password.length < minPasswordLength){
+                    console.log('Short password: ' + email);
+                    return done(null, false, req.flash('message', 'Password must be at least 6 characters long'));
                 }
 
                 if (req.body.password !== req.body.passwordRepeat) {
                     console.log('Not matching passwords in user: ' + email);
                     return done(null, false, req.flash('message', 'Passwords did not match.'));
                 }
+
+                if (user) {
+                    console.log('User already exists: ' + email);
+                    return done(null, false, req.flash('message', 'User already exists.'));
+                }
+
                 else {
                     var newUser = new User();
                     newUser.email = req.body.email;

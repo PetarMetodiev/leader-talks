@@ -5,6 +5,8 @@ var BlogPost = require('../../../models/blogPost');
 var _ = require('underscore');
 var moment = require('moment');
 
+var helpers = require('../../../config/passport/helpers');
+
 module.exports = function(passport) {
 
 	router.get('/', function(req, res, next) {
@@ -47,7 +49,7 @@ module.exports = function(passport) {
 		})
 	})
 
-	router.delete('/:id', function(req, res, next) {
+	router.delete('/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
 		BlogPost.findByIdAndRemove(req.params.id, function(err, blogpost) {
 			if (err) {
 				return next(err);
@@ -57,7 +59,7 @@ module.exports = function(passport) {
 		});
 	});
 
-	router.get('/update/:id', function(req, res, next) {
+	router.get('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
 		BlogPost.findById(req.params.id, function(err, blogpost) {
 			var predefinedContent = {
 				title: blogpost.title,
@@ -72,9 +74,7 @@ module.exports = function(passport) {
 		})
 	});
 
-	router.post('/update/:id', function(req, res, next) {
-
-		console.log('in the update controller');
+	router.post('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
 
 		// TODO: Validate if the Title image url leads to an existing image(e.g. if the responce is 200(OK)). http://stackoverflow.com/a/18441636
 

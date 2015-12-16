@@ -5,11 +5,12 @@ block vars
 
 block content
 	.article
-		.btn-group.edit-buttons.btn-group-right.navbar-right
-			button#edit-button.btn.btn-info(data-id='#{blogpost.id}')
-				span.glyphicon.glyphicon-edit
-			button#remove-button.btn.btn-danger(data-id='#{blogpost.id}')
-				span.glyphicon.glyphicon-remove
+		if user.login && user.role === 'admin'
+			.btn-group.edit-buttons.btn-group-right.navbar-right
+				button#edit-button.btn.btn-info(data-id='#{blogpost.id}')
+					span.glyphicon.glyphicon-edit
+				button#remove-button.btn.btn-danger(data-id='#{blogpost.id}')
+					span.glyphicon.glyphicon-remove
 		h1 #{blogpost.title}
 		img.title-picture(src='#{blogpost.titlePicture}')
 		div

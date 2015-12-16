@@ -20,7 +20,7 @@ module.exports = {
 			required: true
 		},
 		pictures: [String],
-		date: {
+		addedOn: {
 			type: Date,
 			default: Date.now
 		},

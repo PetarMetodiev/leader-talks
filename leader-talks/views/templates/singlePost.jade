@@ -15,6 +15,13 @@ block content
 		img.title-picture(src='#{blogpost.titlePicture}')
 		div
 			!= blogpost.content
-		em #{blogpost.date.toDateString()}
+		em Added&nbsp;
+			span.relative-date #{blogpost.addedOn}
+		if blogpost.updatedOn
+			br
+			em Updated on
+				span.relative-date #{blogpost.updatedOn}
 
+
+	script(src='/bower_components/moment/min/moment-with-locales.js')
 	script(src='/javascripts/single-post-init.js')

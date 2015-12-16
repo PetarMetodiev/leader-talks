@@ -5,8 +5,10 @@ block vars
     - var post = 'active'
 
 block content
-    script(src="javascripts/jQuery.succinct.min.js")
-    script(src='javascripts/all-posts-init.js')
+    script(src="/javascripts/jQuery.succinct.min.js")
+    script(src='/bower_components/moment/min/moment-with-locales.js')
+    script(src='/javascripts/all-posts-init.js')
+
     each post in blogPosts
         div.blog-item
             if user.login && user.role === 'admin'
@@ -20,8 +22,10 @@ block content
                 div.truncate
                     !=post.content
                 br
-                em #{post.relativeDate}
+                em Added&nbsp;
+                    span.relative-date on #{post.addedOn}
             if post.updatedPost
                 br
-                em Updated #{post.relativeUpdatedDate}
+                em Updated&nbsp;
+                    span.relative-date #{post.updatedOn}
                 hr

@@ -12,6 +12,11 @@ $(function () {
 		});
 	});
 
+	$('.relative-date').each(function(index, date){
+		var dbDate = $(this).text();
+		$(this).text(moment(new Date(dbDate)).calendar());
+	})
+
 	$('.truncate').succinct({
 		size: 500 // max number of characters to be shown.
 	});

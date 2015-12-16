@@ -3,35 +3,45 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var BlogPost = require('../../../models/blogPost');
 var _ = require('underscore');
-var moment = require('moment');
 
 var helpers = require('../../../config/passport/helpers');
 
 module.exports = function(passport) {
 
 	router.get('/', function(req, res, next) {
-		BlogPost.find({}, function(err, blogPosts) {
+		// BlogPost.find({}, function(err, blogPosts) {
+		// 	if (err) {
+		// 		return next(err);
+		// 	}
+
+		// 	var sortedBlogPosts = _.sortBy(blogPosts, function(bp) {
+		// 		var relativeDate = moment(bp.date).calendar();
+		// 		bp.relativeDate = relativeDate;
+
+		// 		if (bp.updatedPost) {
+		// 			var relativeUpdatedDate = moment(bp.updatedOn).calendar();
+		// 			bp.relativeUpdatedDate = relativeUpdatedDate;
+		// 		}
+
+		// 		return -bp.date;
+		// 	})
+
+		// 	res.render('./templates/posts', {
+		// 		blogPosts: sortedBlogPosts
+		// 	});
+
+		// });
+		BlogPost.find({}).sort({
+			'addedOn': -1
+		}).exec(function(err, blogPosts) {
 			if (err) {
 				return next(err);
 			}
 
-			var sortedBlogPosts = _.sortBy(blogPosts, function(bp) {
-				var relativeDate = moment(bp.date).calendar();
-				bp.relativeDate = relativeDate;
-
-				if (bp.updatedPost) {
-					var relativeUpdatedDate = moment(bp.updatedOn).calendar();
-					bp.relativeUpdatedDate = relativeUpdatedDate;
-				}
-
-				return -bp.date;
-			})
-
 			res.render('./templates/posts', {
-				blogPosts: sortedBlogPosts
-			});
-
-		});
+				blogPosts: blogPosts
+			})
+		})
 	});
 
 	router.get('/:id', function(req, res, next) {

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = function(req, res, next) {
+
     if (req.isAuthenticated()) {
         return next();
     }
@@ -10,6 +11,7 @@ var isAuthenticated = function(req, res, next) {
 }
 
 var isAdmin = function(req, res, next) {
+
     if (req.user.role === 'admin') {
         return next();
     }

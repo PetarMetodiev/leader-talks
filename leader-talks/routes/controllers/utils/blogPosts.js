@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var BlogPost = require('../../../models/blogPost');
-var _ = require('underscore');
+// var _ = require('underscore');
 
 var helpers = require('../../../config/passport/helpers');
 
@@ -12,7 +12,7 @@ function returnPaginatedBlogposts(req, res, next) {
 	var elementsToSkip = (page - 1) * elementsOnPage;
 	var maxPage;
 
-	BlogPost.count({}, function(err, count) {
+	BlogPost.count({}, function (err, count) {
 		maxPage = Math.ceil(count / elementsOnPage);
 
 		if (page < 1 || page > maxPage) {
@@ -26,7 +26,7 @@ function returnPaginatedBlogposts(req, res, next) {
 			})
 			.limit(elementsOnPage)
 			.skip(elementsToSkip)
-			.exec(function(err, blogPosts) {
+			.exec(function (err, blogPosts) {
 				if (err) {
 					return next(err);
 				}
@@ -43,13 +43,13 @@ function returnPaginatedBlogposts(req, res, next) {
 }
 
 
-module.exports = function(passport) {
+module.exports = function (passport) {
 
 	router.get('/', returnPaginatedBlogposts);
 	router.get('/:page', returnPaginatedBlogposts);
 
-	router.get('/single/:id', function(req, res, next) {
-		BlogPost.findById(req.params.id, function(err, blogpost) {
+	router.get('/single/:id', function (req, res, next) {
+		BlogPost.findById(req.params.id, function (err, blogpost) {
 			if (err) {
 				return next(err);
 			}
@@ -63,8 +63,8 @@ module.exports = function(passport) {
 		});
 	});
 
-	router.delete('/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
-		BlogPost.findByIdAndRemove(req.params.id, function(err, blogpost) {
+	router.delete('/:id', helpers.isAuthenticated, helpers.isAdmin, function (req, res, next) {
+		BlogPost.findByIdAndRemove(req.params.id, function (err, blogpost) {
 			if (err) {
 				return next(err);
 			}
@@ -73,8 +73,8 @@ module.exports = function(passport) {
 		});
 	});
 
-	router.get('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
-		BlogPost.findById(req.params.id, function(err, blogpost) {
+	router.get('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function (req, res, next) {
+		BlogPost.findById(req.params.id, function (err, blogpost) {
 			if (err) {
 				return next(err);
 			}
@@ -91,7 +91,7 @@ module.exports = function(passport) {
 		});
 	});
 
-	router.post('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
+	router.post('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function (req, res, next) {
 
 		// TODO: Validate if the Title image url leads to an existing image(e.g. if the responce is 200(OK)). http://stackoverflow.com/a/18441636
 
@@ -103,7 +103,7 @@ module.exports = function(passport) {
 			updatedOn: new Date()
 		};
 
-		BlogPost.findByIdAndUpdate(req.params.id, newPostObj, function(err, blogpost) {
+		BlogPost.findByIdAndUpdate(req.params.id, newPostObj, function (err, blogpost) {
 
 			if (err) {
 				return next(err);

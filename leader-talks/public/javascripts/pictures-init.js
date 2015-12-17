@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	$(".fb-album-container").FacebookAlbumBrowser({
 		account: 'leadertalks',
-		accessToken: "775908159169504|cYEIsh0rs25OQQC8Ex2hXyCOut4",
+		accessToken: "1669539846617717|Bji_mIfJuj2yBcWd8Nj19BhM6Pk",
 		showComments: true,
 		commentsLimit: 10,
 		showAccountInfo: true,

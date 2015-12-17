@@ -1,0 +1,24 @@
+if currentPage <= 1
+    - var disablePrevious = 'disabled'
+    - var disableNext = ''
+    - var nextPage = parseInt(currentPage) + 1
+    - var previousPage = '#'
+else if currentPage >= (maxPage - 1)
+    - var disablePrevious = ''
+    - var disableNext = 'disabled'
+    - var nextPage = '#'
+    - var previousPage = parseInt(currentPage) - 1
+else
+    - var nextPage = parseInt(currentPage) + 1
+    - var previousPage = parseInt(currentPage) - 1
+
+nav
+    ul.pager
+        li(class='#{disablePrevious}')
+            a(href='/posts/#{previousPage}')
+                span(aria-hidden='true') &larr; &nbsp;
+                | Previous
+        li(class='#{disableNext}')
+            a(href='/posts/' + nextPage)
+                | Next &nbsp;
+                span(aria-hidden='true') &rarr;

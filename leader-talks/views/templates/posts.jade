@@ -9,13 +9,15 @@ block content
     script(src='/bower_components/moment/min/moment-with-locales.js')
     script(src='/javascripts/all-posts-init.js')
 
+    include ./includes/pager.jade
+
     each post in blogPosts
         div.blog-item
             if user.login && user.role === 'admin'
                 .btn-group.edit-buttons.btn-group-right.navbar-right
                     button#remove-button.btn.btn-danger(data-id=post.id)
                         span.glyphicon.glyphicon-remove
-            a(href='posts/' + post.id)
+            a(href='/posts/single/' + post.id)
                 h1=  post.title
                 .image-container
                     img.title-picture(src='#{post.titlePicture}')
@@ -29,3 +31,5 @@ block content
                 em Updated&nbsp;
                     span.relative-date #{post.updatedOn}
                 hr
+
+    include ./includes/pager.jade

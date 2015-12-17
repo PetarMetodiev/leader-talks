@@ -6,45 +6,49 @@ var _ = require('underscore');
 
 var helpers = require('../../../config/passport/helpers');
 
-module.exports = function(passport) {
+function returnPaginatedBlogposts(req, res, next) {
+	var elementsOnPage = 5;
+	var page = req.params.page || 1;
+	var elementsToSkip = (page - 1) * elementsOnPage;
+	var maxPage;
 
-	router.get('/', function(req, res, next) {
-		// BlogPost.find({}, function(err, blogPosts) {
-		// 	if (err) {
-		// 		return next(err);
-		// 	}
+	BlogPost.count({}, function(err, count) {
+		maxPage = Math.ceil(count / elementsOnPage);
 
-		// 	var sortedBlogPosts = _.sortBy(blogPosts, function(bp) {
-		// 		var relativeDate = moment(bp.date).calendar();
-		// 		bp.relativeDate = relativeDate;
+		if (page < 1 || page > maxPage) {
+			res.redirect('./');
+		}
 
-		// 		if (bp.updatedPost) {
-		// 			var relativeUpdatedDate = moment(bp.updatedOn).calendar();
-		// 			bp.relativeUpdatedDate = relativeUpdatedDate;
-		// 		}
-
-		// 		return -bp.date;
-		// 	})
-
-		// 	res.render('./templates/posts', {
-		// 		blogPosts: sortedBlogPosts
-		// 	});
-
-		// });
-		BlogPost.find({}).sort({
-			'addedOn': -1
-		}).exec(function(err, blogPosts) {
-			if (err) {
-				return next(err);
-			}
-
-			res.render('./templates/posts', {
-				blogPosts: blogPosts
+		BlogPost
+			.find({})
+			.sort({
+				'addedOn': -1
 			})
-		})
+			.limit(elementsOnPage)
+			.skip(elementsToSkip)
+			.exec(function(err, blogPosts) {
+				if (err) {
+					return next(err);
+				}
+
+				res.render('./templates/posts', {
+					blogPosts: blogPosts,
+					currentPage: page,
+					maxPage: maxPage
+				});
+			});
 	});
 
-	router.get('/:id', function(req, res, next) {
+
+}
+
+
+module.exports = function(passport) {
+
+	router.get('/', returnPaginatedBlogposts);
+	router.get('/:page', returnPaginatedBlogposts);
+
+	router.get('/single/:id', function(req, res, next) {
 		BlogPost.findById(req.params.id, function(err, blogpost) {
 			if (err) {
 				return next(err);
@@ -56,8 +60,8 @@ module.exports = function(passport) {
 				blogpost: blogpost
 			});
 
-		})
-	})
+		});
+	});
 
 	router.delete('/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
 		BlogPost.findByIdAndRemove(req.params.id, function(err, blogpost) {
@@ -71,17 +75,20 @@ module.exports = function(passport) {
 
 	router.get('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
 		BlogPost.findById(req.params.id, function(err, blogpost) {
+			if (err) {
+				return next(err);
+			}
 			var predefinedContent = {
 				title: blogpost.title,
 				pictureURL: blogpost.titlePicture,
 				content: blogpost.content,
 				id: req.params.id,
 				updateBlogpost: true
-			}
+			};
 			res.render('./templates/newPost', {
 				predefinedContent: predefinedContent
 			});
-		})
+		});
 	});
 
 	router.post('/update/:id', helpers.isAuthenticated, helpers.isAdmin, function(req, res, next) {
@@ -103,9 +110,9 @@ module.exports = function(passport) {
 			}
 
 			res.redirect('/posts/' + req.params.id);
-		})
+		});
 	});
 
 
 	return router;
-}
+};

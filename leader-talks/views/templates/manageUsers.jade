@@ -1,0 +1,26 @@
+extends ../base
+
+block vars
+    - var title = 'Admin panel'
+
+block content
+    link(href='https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css', rel='stylesheet')
+    script(src='https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js')
+    script(src='/javascripts/manage-users-init.js')
+    table#users-container.display(cellspacing="0", width="100%")
+        thead
+            tr
+                th Email
+                th Role
+                th Other stuff can be added
+        tfoot
+            tr
+                th Email
+                th Role
+                th Other stuff can be added
+        tbody
+            each user in users
+                tr
+                    td #{user.email}
+                    td #{user.role}
+                    td Additional stuff here

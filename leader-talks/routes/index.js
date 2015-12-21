@@ -8,6 +8,7 @@ var donate = require('./controllers/utils/donate');
 var pictures = require('./controllers/utils/pictures');
 var blogPosts = require('./controllers/utils/blogPosts');
 var newPost = require('./controllers/utils/newPost');
+var manageUsers = require('./controllers/utils/manageUsers');
 
 var auth = require('./controllers/auth');
 
@@ -28,6 +29,8 @@ module.exports = function(passport) {
     router.use('/posts', blogPosts(passport));
 
     router.use('/newpost', helpers.isAuthenticated, helpers.isAdmin, newPost(passport));
+
+    router.use('/manage-users', helpers.isAuthenticated, helpers.isAdmin, manageUsers(passport));
 
     return router;
 }

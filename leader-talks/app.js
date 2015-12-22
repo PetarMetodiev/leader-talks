@@ -49,7 +49,7 @@ initPassport(passport);
 app.use(function(req, res, next) {
   res.locals.user = {
     login: req.isAuthenticated()
-  }
+  };
 
   if (req.isAuthenticated()) {
     res.locals.user.email = req.user.email;
@@ -57,7 +57,7 @@ app.use(function(req, res, next) {
   }
 
   next();
-})
+});
 
 app.use(require('./routes')(passport));
 

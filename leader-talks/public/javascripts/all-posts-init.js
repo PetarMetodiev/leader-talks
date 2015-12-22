@@ -1,7 +1,7 @@
 $(function () {
 	$('.blog-item').on('click', '#remove-button', function (event) {
 		var objectId = $(this).data('id');
-		var url = 'posts/' + objectId;
+		var url = '/posts/single/' + objectId;
 
 		$.ajax({
 			url: url,

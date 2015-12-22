@@ -61,9 +61,9 @@ app.use(function(req, res, next) {
 
 app.use(require('./routes')(passport));
 
-app.all('*', function(req,res,next){
-  res.redirect('/');
-});
+// app.all('*', function(req,res,next){
+//   res.redirect('/');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

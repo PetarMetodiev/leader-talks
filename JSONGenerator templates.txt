@@ -1,0 +1,28 @@
+[
+  '{{repeat(50)}}',
+  {
+    "title": "Post No {{index()}}",
+    "content": "{{lorem(10, 'paragraphs')}}",
+    "titlePicture": function(tags){
+      var catUrls = ["http://weknowyourdreams.com/images/cat/cat-02.jpg",
+                    "http://www.cats.org.uk/uploads/branches/211/5507692-cat-m.jpg",
+                    "http://weknowyourdreams.com/images/cat/cat-03.jpg",
+                    "http://scienceblogs.com/gregladen/files/2012/12/Beautifull-cat-cats-14749885-1600-1200.jpg",
+                    "https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg",
+                    "https://upload.wikimedia.org/wikipedia/commons/2/22/Turkish_Van_Cat.jpg",
+                    "http://www.zastavki.com/pictures/1680x1050/2010/Animals_Cats_Cat_023761_.jpg",
+                    "http://i3.mirror.co.uk/incoming/article99763.ece/ALTERNATES/s615/a-bengal-cat-935179217.jpg",
+                    "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/cat_skin_problems_slideshow/photolibrary_rf_photo_of_cat_scratching.jpg",
+                    "https://www.petfinder.com/wp-content/uploads/2015/11/homebody-blog-1.jpg",
+                    "http://media1.santabanta.com/full1/Animals/Cats/cats-81a.jpg",
+                    "https://metrouk2.files.wordpress.com/2015/12/ukiyo-killed-swns.jpg"];
+
+      return catUrls[tags.integer(0, catUrls.length - 1)];
+    },
+    "addedOn": {
+      "$date": "20{{integer(0,1)}}{{integer(0,9)}}-{{integer(10,12)}}-{{integer(10,28)}}T{{integer(10,23)}}:{{integer(10,59)}}:{{integer(10,59)}}.{{integer(100,999)}}Z"
+    },
+    "pictures": [],
+    "__v": 0
+  }
+]
